@@ -70,6 +70,8 @@ services:
       - 6383:6379
 
   agent:
+    container_name: unkey-agent-1
+    hostname: unkey-agent-1
     command: ["/usr/local/bin/unkey", "agent", "--config", "config.docker.json"]
     build:
       context: ../apps/agent
@@ -157,7 +159,7 @@ services:
         "--var=DATABASE_HOST:planetscale:3900",
         "--var=DATABASE_USERNAME:unkey",
         "--var=DATABASE_PASSWORD:password",
-        "--var=AGENT_URL:http://agent:8080",
+        "--var=AGENT_URL:http://unkey-agent-1:8080",
         "--var=AGENT_TOKEN:agent-auth-secret",
         "--var=EMIT_METRICS_LOGS:false",
         "--var=SYNC_RATELIMIT_ON_NO_DATA:1.0",
